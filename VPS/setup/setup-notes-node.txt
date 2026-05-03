@@ -1,0 +1,39 @@
+# user darrell will install Volta (a Node version manager, replaces nvm)
+# this seems weird but it's the best way
+
+# install Volta
+curl https://get.volta.sh | bash
+source ~/.bashrc
+
+# install latest Node LTS
+volta install node
+
+# verify
+node --version
+npm --version
+
+# if you want to pin the version
+volta install node@20
+
+cd /var/www/sonoquii.com/repo
+volta pin node@20
+
+# adds to your package.json
+"volta": {
+  "node": "20.x.x"
+}
+
+# where did Volta install node?  (inside darrell)
+volta which node
+# darrell@ddtech:~$ volta which node
+# /home/darrell/.volta/tools/image/node/24.15.0/bin/node
+
+# link the version installed under darrell to a standard location
+# /user/local/bin/ = for software installed manually outside of apt system package manager
+sudo ln -s $(volta which node) /usr/local/bin/node
+
+# then your unit file can use 
+ExecStart=/usr/local/bin/node
+
+# note you could install Node system-wide after installing Volta, but we won't start with that approach
+volta install node --toolchain

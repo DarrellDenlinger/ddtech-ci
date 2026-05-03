@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+# /etc/nginx/sites-available/pelhamblueband.conf.enable
+#
+# Creates a symlink from sites-enabled to sites-available.
+# nginx.conf includes only config from sites-enabled.
+# Run once to activate the pelhamblueband nginx config.
+#
+# Usage:
+#   sudo bash /etc/nginx/sites-available/pelhamblueband.conf.enable
+
+set -euo pipefail
+
+SRC="/etc/nginx/sites-available/pelhamblueband.conf"
+DEST="/etc/nginx/sites-enabled/pelhamblueband.conf"
+
+if [[ ! -f "$SRC" ]]; then
+  echo "ERROR: Source config not found: $SRC" >&2
+  exit 1
+fi
+
+if [[ -L "$DEST" ]]; then
+  echo "Symlink already exists: $DEST -> $(readlink "$DEST")"
+  echo "Nothing to do."
+  exit 0
+fi
+
+if [[ -e "$DEST" ]]; then
+  echo "ERROR: $DEST exists but is not a symlink. Remove it manually and re-run." >&2
+  exit 1
+fi
+
+ln -s "$SRC" "$DEST"
+echo "Created: $DEST -> $SRC"
+
+echo "Testing nginx configuration..."
+if nginx -t 2>&1; then
+  echo "nginx config OK — reloading..."
+  systemctl reload nginx
+  echo "Done. pelhamblueband.conf is now active."
+else
+  echo "ERROR: nginx config test failed. Removing symlink." >&2
+  rm "$DEST"
+  exit 1
+fi

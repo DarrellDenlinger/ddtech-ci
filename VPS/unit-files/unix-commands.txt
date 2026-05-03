@@ -1,5 +1,6 @@
 # service files live at
 # /etc/systemd/system/sonoquii-server.service
+# copy them there manually
 
 # ################## Initial Registration ###################
 

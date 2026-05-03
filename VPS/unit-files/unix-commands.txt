@@ -1,0 +1,40 @@
+# service files live at
+# /etc/systemd/system/sonoquii-server.service
+
+# ################## Initial Registration ###################
+
+# Reload systemd so it sees the new file
+sudo systemctl daemon-reload
+
+# Enable it to start automatically at boot
+sudo systemctl enable sonoquii-server
+
+# Start it now
+sudo systemctl start sonoquii-server
+
+# Verify it's running
+sudo systemctl status sonoquii-server
+
+
+# ################## Operaion and Troubleshooting ###################
+
+# Do NOT edit the nginx unit file, it would be overwritten by updates
+
+# list all services
+systemctl list-units --type=service
+
+# look for a specific one
+systemctl list-units --type=service | grep nginx
+
+# check status of specific service
+systemctl status nginx
+
+# see the unit file for a service
+systemctl cat nginx
+
+# re-read all unit files from disk and reload in memory
+# note this does NOT restart any services
+sudo systemctl daemon-reload
+# it would be typical to restart your service after this command
+# sudo /var/www/sonoquii.com/restart-server.sh
+

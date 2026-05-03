@@ -1,0 +1,21 @@
+# /etc/systemd/system/pbb-server.service
+
+[Unit]
+Description=Pelham Blue Band website Node Express server
+After=network.target
+
+[Service]
+WorkingDirectory=/var/www/pelhamblueband.com/repo/server
+ExecStart=/usr/local/bin/node server.js
+Restart=always
+RestartSec=10
+StartLimitIntervalSec=60
+StartLimitBurst=3
+User=pbb
+Group=pbb
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+

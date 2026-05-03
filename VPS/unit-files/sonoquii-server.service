@@ -1,0 +1,22 @@
+# /etc/systemd/system/sonoquii-server.service
+
+[Unit]
+Description=Sonoquii Node Express server
+After=network.target
+
+[Service]
+WorkingDirectory=/var/www/sonoquii.com/repo/server
+ExecStart=/usr/local/bin/node server.js
+Restart=always
+RestartSec=10
+StartLimitIntervalSec=60
+StartLimitBurst=3
+User=sonoquii
+Group=sonoquii
+EnvironmentFile=/var/www/sonoquii.com/.env.production
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+

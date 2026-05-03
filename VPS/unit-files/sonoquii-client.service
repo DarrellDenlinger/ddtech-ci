@@ -1,0 +1,17 @@
+# /etc/systemd/system/sonoquii-vite.service         permissions 644  root root
+
+[Unit]
+Description=Sonoquii Vite Dev Server
+After=network.target
+
+[Service]
+Type=simple
+User=sonoquii
+WorkingDirectory=/var/www/sonoquii.com/repo/client
+ExecStart=/usr/bin/npm run prod
+Restart=always
+RestartSec=5
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

@@ -19,7 +19,7 @@ pull() {
 }
 
 install_server_dependencies() {
-    echo >>> $PROJECT_NAME ">>> Installing server dependencies..."
+    echo ">>> $PROJECT_NAME >>> Installing server dependencies..."
     sudo -u "$APP_USER" npm --prefix "$PROJECT_DIR/server" install
     echo ">>> $PROJECT_NAME >>> Pruning server dependencies..."
     sudo -u "$APP_USER" npm --prefix "$PROJECT_DIR/server" prune

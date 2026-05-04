@@ -1,45 +1,16 @@
-# user darrell will install Volta (a Node version manager, replaces nvm)
-# this seems weird but it's the best way
+# I tried using Volta (a Node version manager, replaces nvm)
+# but that is really designed for one user. 
+# It causes many problems to try and share that with service users.
+# Because it installs a private version in ~darrell/.volta
+# So I just did a normal system install 
 
-# install Volta
-curl https://get.volta.sh | bash
-source ~/.bashrc
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install nodejs
 
-# install latest Node LTS
-volta install node
-
-# verify
-node --version
-npm --version
-
-# if you want to pin the version
-volta install node@20
-
-cd /var/www/sonoquii.com/repo
-volta pin node@20
-
-# adds to your package.json
-"volta": {
-  "node": "20.x.x"
-}
-
-# where did Volta install node?  (inside darrell)
-volta which node
-# darrell@ddtech:~$ volta which node
-# /home/darrell/.volta/tools/image/node/24.15.0/bin/node
-
-# if you link the volta executables to /usr/local/bin then the service users will need permissions
-# all they way through your .volta system, which is a pain.
-# so rather than creating a link, copy the actual file to /usr/local/bin
-# which has the downside that you need to recopy it any time you upgrade 
-# /user/local/bin/ = for software installed manually outside of apt system package manager
-sudo cp $(volta which node) /usr/local/bin/node
-sudo cp $(volta which npm) /usr/local/bin/npm
-
+# this install node and npm under /usr/bin
+# which is visible to service users
 
 
 # then your unit file can use 
-ExecStart=/usr/local/bin/node
+ExecStart=/usr/bin/node
 
-# note you could install Node system-wide after installing Volta, but we won't start with that approach
-volta install node --toolchain

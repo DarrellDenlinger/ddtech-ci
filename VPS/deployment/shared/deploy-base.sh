@@ -1,4 +1,4 @@
-# put this at /var/www/shard/deploy-base.sh
+# put this at /var/www/shared/deploy-base.sh
 #
 # include this in per-project deploy scripts: deploy-from-git.sh
 # source /var/www/shared/deploy-base.sh

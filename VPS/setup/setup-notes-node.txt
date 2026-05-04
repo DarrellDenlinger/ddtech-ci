@@ -28,9 +28,15 @@ volta which node
 # darrell@ddtech:~$ volta which node
 # /home/darrell/.volta/tools/image/node/24.15.0/bin/node
 
-# link the version installed under darrell to a standard location
+# if you link the volta executables to /usr/local/bin then the service users will need permissions
+# all they way through your .volta system, which is a pain.
+# so rather than creating a link, copy the actual file to /usr/local/bin
+# which has the downside that you need to recopy it any time you upgrade 
 # /user/local/bin/ = for software installed manually outside of apt system package manager
-sudo ln -s $(volta which node) /usr/local/bin/node
+sudo cp $(volta which node) /usr/local/bin/node
+sudo cp $(volta which npm) /usr/local/bin/npm
+
+
 
 # then your unit file can use 
 ExecStart=/usr/local/bin/node

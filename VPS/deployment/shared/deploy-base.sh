@@ -3,6 +3,9 @@
 # include this in per-project deploy scripts: deploy-from-git.sh
 # source /var/www/shared/deploy-base.sh
 
+# sudo chown root:root /var/www/shared/deploy-base.sh
+# sudo chmod 755 /var/www/shared/deploy-base.sh
+
 # expecting PROJECT_DIR to come in something like /var/www/sonoquii.com
 PROJECT_DIR="${PROJECT_DIR%/}"   # remove trailing slash if any
 PROJECT_NAME="${PROJECT_DIR##*/}"  # remove longest string ending in / 

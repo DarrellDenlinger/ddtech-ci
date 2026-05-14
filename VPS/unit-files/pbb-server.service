@@ -5,7 +5,7 @@ Description=Pelham Blue Band website Node Express server
 After=network.target
 
 [Service]
-WorkingDirectory=/var/www/pelhamblueband.com/repo/server
+WorkingDirectory=/var/www/pelhamblueband.com/repo
 ExecStart=/usr/bin/node server.js
 Restart=always
 RestartSec=10

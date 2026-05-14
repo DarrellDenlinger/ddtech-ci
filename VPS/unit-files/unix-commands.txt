@@ -4,11 +4,14 @@
 
 # ################## Initial Registration ###################
 
-# Reload systemd so it sees the new file
+# Reload systemd unit file definitions so it sees the new file
 sudo systemctl daemon-reload
 
 # Enable it to start automatically at boot
 sudo systemctl enable sonoquii-server
+
+# systemctl is like remote control for systemd
+# start, stop, restart, reload, enable, status, is-enabled      
 
 # Start it now
 sudo systemctl start sonoquii-server
@@ -39,3 +42,12 @@ sudo systemctl daemon-reload
 # it would be typical to restart your service after this command
 # sudo /var/www/sonoquii.com/restart-server.sh
 
+# ################## nginx ###################
+# ngnix is special in that we don't control its unit file
+# we can control the operation Troubleshooting
+
+# validate the configs 
+sudo nginx -t
+
+# reloads the configs without stopping the service
+sudo systemctl reload nginx

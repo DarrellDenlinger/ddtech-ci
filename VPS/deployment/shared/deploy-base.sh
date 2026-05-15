@@ -44,8 +44,25 @@ install_client_dependencies() {
 #            client
 #                ...
 link_server_env() {
-    echo ">>> $PROJECT_NAME >>> Linking .env.production" ln -sf "$PROJECT_DIR/.env.production" "$PROJECT_DIR/server/.env.production"
-    echo ">>> $PROJECT_NAME >>> Linking .env.development" ln -sf "$PROJECT_DIR/.env.development" "$PROJECT_DIR/server/.env.development"
+    local src_prod="$PROJECT_DIR/.env.production"
+    local src_dev="$PROJECT_DIR/.env.development"
+    local dest_prod="$PROJECT_DIR/server/.env.production"
+    local dest_dev="$PROJECT_DIR/server/.env.development"
+
+    if [[ ! -f "$src_prod" ]]; then
+        echo "ERROR: $src_prod not found. Aborting." >&2
+        exit 1
+    fi
+
+    echo ">>> $PROJECT_NAME >>> Linking .env.production"
+    ln -sf "$src_prod" "$dest_prod"
+
+    if [[ ! -f "$src_dev" ]]; then
+        echo "WARNING: $src_dev not found. Skipping development env link."
+    else
+        echo ">>> $PROJECT_NAME >>> Linking .env.development"
+        ln -sf "$src_dev" "$dest_dev"
+    fi
 }
 
 finish() {

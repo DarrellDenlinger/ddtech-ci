@@ -10,7 +10,7 @@
 PROJECT_DIR="${PROJECT_DIR%/}"   # remove trailing slash if any
 PROJECT_NAME="${PROJECT_DIR##*/}"  # remove longest string ending in / 
 
-echo ">>> $PROJECT_NAME >>> Starting deploy..."
+echo ">>> Deploy >>> Project: $PROJECT_NAME   Project_dir: $PROJECT_DIR >>> Starting deploy..."
 cd "$PROJECT_DIR"
 
 pull() {
@@ -44,8 +44,8 @@ install_client_dependencies() {
 #            client
 #                ...
 link_server_env() {
-    local src_prod="$PROJECT_DIR/.env.production"
-    local src_dev="$PROJECT_DIR/.env.development"
+    local src_prod="$PROJECT_DIR/../.env.production"
+    local src_dev="$PROJECT_DIR/../.env.development"
     local dest_prod="$PROJECT_DIR/server/.env.production"
     local dest_dev="$PROJECT_DIR/server/.env.development"
 

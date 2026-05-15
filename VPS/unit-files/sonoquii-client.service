@@ -11,6 +11,7 @@ Type=simple
 User=sonoquii
 Group=sonoquii
 WorkingDirectory=/var/www/sonoquii.com/repo/client
+Environment=NODE_ENV=production
 ExecStart=/usr/bin/npm run prod
 Restart=always
 RestartSec=5

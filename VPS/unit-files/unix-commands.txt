@@ -20,6 +20,12 @@ sudo systemctl start sonoquii-server
 sudo systemctl status sonoquii-server
 
 
+# changing a unit file, do this after copying the new file
+sudo systemctl daemon-reload
+sudo systemctl restart sonoquii-server
+sudo systemctl status sonoquii-server
+
+
 # ################## Operaion and Troubleshooting ###################
 
 # Do NOT edit the nginx unit file, it would be overwritten by updates

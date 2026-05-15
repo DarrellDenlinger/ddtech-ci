@@ -3,7 +3,7 @@ set -euo pipefail
 
 
 APP_USER="sonoquii"
-PROJECT_DIR="/var/www/sonoquii.com/repo"
+PROJECT_DIR="/var/www/sonoquii.com"
 
 
 source /var/www/shared/deploy-base.sh

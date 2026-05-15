@@ -3,7 +3,7 @@ set -euo pipefail
 
 
 APP_USER="pbb"
-PROJECT_DIR="/var/www/pelhamblueband.com/repo"
+PROJECT_DIR="/var/www/pelhamblueband.com"
 # expecting PROJECT_DIR to come in something like /var/www/pelhamblueband.com
 PROJECT_DIR="${PROJECT_DIR%/}"   # remove trailing slash if any
 PROJECT_NAME="${PROJECT_DIR##*/}"  # remove longest string ending in / 

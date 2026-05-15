@@ -7,7 +7,7 @@
 
 set -euo pipefail
 
-SERVICE="sonoquii-server"
+SERVICE_NAME="sonoquii-server"
 
 source /var/www/shared/restart-service-base.sh
 

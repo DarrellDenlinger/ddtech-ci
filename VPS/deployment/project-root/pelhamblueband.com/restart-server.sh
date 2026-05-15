@@ -7,7 +7,7 @@
 
 set -euo pipefail
 
-SERVICE="pbb-server"
+SERVICE_NAME="pbb-server"
 
 source /var/www/shared/restart-service-base.sh
 

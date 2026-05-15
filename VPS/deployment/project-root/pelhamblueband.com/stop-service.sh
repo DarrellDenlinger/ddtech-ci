@@ -7,6 +7,6 @@
 
 set -euo pipefail
 
-SERVICE="pbb-server"
+SERVICE_NAME="pbb-server"
 
 source /var/www/shared/stop-service-base.sh

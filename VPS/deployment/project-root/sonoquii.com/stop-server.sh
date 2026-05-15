@@ -7,6 +7,6 @@
 
 set -euo pipefail
 
-SERVICE="sonoquii-server"
+SERVICE_NAME="sonoquii-server"
 
 source /var/www/shared/stop-service-base.sh

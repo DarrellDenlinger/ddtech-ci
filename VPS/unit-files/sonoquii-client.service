@@ -1,17 +1,22 @@
 # /etc/systemd/system/sonoquii-vite.service         permissions 644  root root
 
 [Unit]
-Description=Sonoquii Vite Dev Server
+Description=Sonoquii Client Vite Dev Server
 After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
 
 [Service]
 Type=simple
 User=sonoquii
+Group=sonoquii
 WorkingDirectory=/var/www/sonoquii.com/repo/client
 ExecStart=/usr/bin/npm run prod
 Restart=always
 RestartSec=5
 Environment=NODE_ENV=production
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target

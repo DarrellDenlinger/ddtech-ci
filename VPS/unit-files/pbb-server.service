@@ -3,16 +3,17 @@
 [Unit]
 Description=Pelham Blue Band website Node Express server
 After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
 
 [Service]
+Type=simple
+User=pbb
+Group=pbb
 WorkingDirectory=/var/www/pelhamblueband.com/repo
 ExecStart=/usr/bin/node server.js
 Restart=always
 RestartSec=10
-StartLimitIntervalSec=60
-StartLimitBurst=3
-User=pbb
-Group=pbb
 StandardOutput=journal
 StandardError=journal
 

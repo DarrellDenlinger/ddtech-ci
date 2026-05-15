@@ -3,16 +3,17 @@
 [Unit]
 Description=Sonoquii Node Express server
 After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
 
 [Service]
+Type=simple
+User=sonoquii
+Group=sonoquii
 WorkingDirectory=/var/www/sonoquii.com/repo/server
 ExecStart=/usr/bin/node server.js
 Restart=always
 RestartSec=10
-StartLimitIntervalSec=60
-StartLimitBurst=3
-User=sonoquii
-Group=sonoquii
 EnvironmentFile=/var/www/sonoquii.com/.env.production
 StandardOutput=journal
 StandardError=journal

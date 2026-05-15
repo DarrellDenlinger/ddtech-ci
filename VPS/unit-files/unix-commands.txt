@@ -32,6 +32,10 @@ systemctl list-units --type=service | grep nginx
 
 # check status of specific service
 systemctl status nginx
+systemctl status pbb-server
+systemctl status sonoquii-server
+systemctl status sonoquii-client
+
 
 # see the unit file for a service
 systemctl cat nginx

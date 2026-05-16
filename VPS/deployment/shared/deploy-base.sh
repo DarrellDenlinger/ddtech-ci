@@ -51,6 +51,24 @@ install_client_dependencies() {
     sudo -u "$APP_USER" npm --prefix "$REPO_DIR/client" prune
 }
 
+build_client_dist() {
+    echo ">>> $PROJECT_NAME >>> Building client dist..."
+
+    if [[ ! -d "$REPO_DIR/client" ]]; then
+        echo "ERROR: $REPO_DIR/client not found. Aborting." >&2
+        exit 1
+    fi
+
+    sudo -u "$APP_USER" npm --prefix "$REPO_DIR/client" run build
+
+    if [[ ! -f "$REPO_DIR/client/dist/index.html" ]]; then
+        echo "ERROR: Client build completed, but $REPO_DIR/client/dist/index.html was not found. Aborting." >&2
+        exit 1
+    fi
+
+    echo ">>> $PROJECT_NAME >>> Client dist built successfully."
+}
+
 link_server_env() {
     local src_prod="$PROJECT_DIR/.env.production"
     local src_dev="$PROJECT_DIR/.env.development"

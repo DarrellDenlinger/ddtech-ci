@@ -13,4 +13,5 @@ pull
 install_server_dependencies
 link_server_env
 install_client_dependencies
+build_client_dist
 finish
